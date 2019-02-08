@@ -1,0 +1,12 @@
+[package]
+name = "default_macro"
+version = "0.1.0"
+authors = ["Mikhail Modin <mikhailm1@gmail.com>"]
+edition = "2018"
+description = "My default!() macro"
+homepage = "https://github.com/mikhail-m1/default_macro"
+repository = "https://github.com/mikhail-m1/default_macro"
+readme = "README.md"
+license = "MIT"
+
+[dependencies]
