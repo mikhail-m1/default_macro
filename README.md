@@ -1,15 +1,29 @@
 # default! macro for Rust
 
-example:
+Sometimes you want to create nested structures, set values for some the fields and use default value for most of the other, for example:
 
 ```
 use default_macro::default;
 
 #[derive(Default)]
-struct Foo { a: i32, b: f64 }
+struct Window { title: &str, border: Border, /* 10 other fields */ }
 
-default!(Foo{}) // Foo { a: 0, b: 0.0 }
-default!(Foo{a:1}) // Foo { a: 1, b: 0.0 }
-default!(Foo{a:1,}) // Foo { a: 1, b: 0.0 }"
-default!(Foo{a:1, b: 1.0}) // Foo { a: 1, b: 1.0 }"
+#[derive(Default)]
+struct Border { width: f64, /* 5 other fields*/ }
+
+fn foo() {
+    let w1 = Window { 
+        title: "Test", 
+        border: Border {  
+            width: 10.0, 
+            ..Border::Default}, 
+        ..Window::default()
+    };
+
+    // with the macros:
+    let w2 = default!( Window { 
+        title: "Test", 
+        border: Border {  width: 10.0} 
+    });
+}
 ```
